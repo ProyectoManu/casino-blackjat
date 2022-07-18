@@ -11,13 +11,29 @@ public class Juwgo {
 	
 		Mazo mazo = new Mazo();
 		Mano jugador = new Mano();
+		Mano banca = new Mano();
 		
 		System.out.println("Barajando carta...");
 		mazo.barajar();
 		
+		System.out.println("Repartiendo cartas iniciales...");
+		
+		jugador.pedirCarta(mazo);
+		System.out.println("Jugador: "+jugador);
+		
+		banca.pedirCarta(mazo);
+		System.out.println("Banca "+banca);
+		
+		jugador.pedirCarta(mazo);
+		System.out.println("Jugador: "+jugador);
+		
+		banca.pedirCarta(mazo,false);
+		System.out.println("Banca "+banca);
+		
 		Scanner entrada = new Scanner(System.in);
 		int opcion;
 		boolean plantado=false;
+		
 		do {
 		    System.out.println("¿Quieres carta ) (1=Si, 0=No)");
 		    opcion = entrada.nextInt();
@@ -31,11 +47,11 @@ public class Juwgo {
 		}
 	} while (opcion!=0 && !jugador.finDeJuego()); // && !plantado);
 		
-		Mano banca =  new Mano();
 		System.out.println("Juega la banca....");
-		
+		banca.descubrir();
+		System.out.println("Cartas de la banca:");
 	if (jugador.valorMano()>21) {
-		System.out.println("Gana la banca");
+		System.out.println("Gana la banca"+banca);
 	}else {
 		
 		do {	
